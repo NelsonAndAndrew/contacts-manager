@@ -54,13 +54,28 @@ public class ContactsApp {
             contactsList = Files.readAllLines(dataFile);
             System.out.println(contactsList);
             for (int i = 0; i < contactsList.size(); i++) {
-                if(contactsList.get(i).equals(userSearch)){
+                if (contactsList.get(i).equals(userSearch)) {
                     System.out.println(contactsList.get(contactsList.indexOf(userSearch)));
-                    System.out.println(contactsList.get(contactsList.indexOf(userSearch)+1));
-                    System.out.println(contactsList.get(contactsList.indexOf(userSearch)+2));
+                    System.out.println(contactsList.get(contactsList.indexOf(userSearch) + 1));
+                    System.out.println(contactsList.get(contactsList.indexOf(userSearch) + 2));
                 }
 
             }
+        } else if (userInput == 4) {
+            System.out.print("Who you want to get rid of:  ");
+            String userDelete = scan.next();
+            contactsList = Files.readAllLines(dataFile);
+            List<String> deleteList = new ArrayList<>();
+            for (int i = 0; i < contactsList.size(); i++) {
+                if (contactsList.get(i).equals(userDelete)) {
+                    i+=2;
+                    continue;
+                }
+                deleteList.add(contactsList.get(i));
+//                contactsList = deleteList;
+            }
+            Files.write(dataFile, deleteList);
+            System.out.println(deleteList);
         }
 
 
