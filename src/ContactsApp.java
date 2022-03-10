@@ -1,7 +1,4 @@
-package PACKAGE_NAME;
-
-import java.util.ArrayList;
-import java.util.List;
+package contactsManagerApp;
 
 public class ContactsApp {
 
