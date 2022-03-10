@@ -56,6 +56,8 @@ public class ContactsApp {
             for (int i = 0; i < contactsList.size(); i++) {
                 if(contactsList.get(i).equals(userSearch)){
                     System.out.println(contactsList.get(contactsList.indexOf(userSearch)));
+                    System.out.println(contactsList.get(contactsList.indexOf(userSearch)+1));
+                    System.out.println(contactsList.get(contactsList.indexOf(userSearch)+2));
                 }
 
             }
