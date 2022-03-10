@@ -12,9 +12,6 @@ import java.util.Scanner;
 public class ContactsApp {
 
 
-
-
-
     public static void main(String[] args) throws IOException {
 
 //     CODE GOES HERE LOL
@@ -39,9 +36,9 @@ public class ContactsApp {
         int userInput = scan.nextInt();
 
         //Conditional Start
-        if(userInput == 1){
+        if (userInput == 1) {
             System.out.println(Files.readAllLines(dataFile));
-        } else if(userInput == 2){
+        } else if (userInput == 2) {
             System.out.print("Enter a name :  ");
             String newName = scan.next();
             System.out.print("Enter phone number:  ");
@@ -49,10 +46,20 @@ public class ContactsApp {
             System.out.print("Enter email address:  ");
             String newEmail = scan.next();
             List<String> newContact = Arrays.asList(newName, newNumber, newEmail);
-            System.out.println(newContact);
+            Files.write(dataFile, newContact, StandardOpenOption.APPEND);
+//            System.out.println(Files.readAllLines(dataFile));
+        } else if (userInput == 3) {
+            System.out.print("Enter a name to search:  ");
+            String userSearch = scan.next();
+            contactsList = Files.readAllLines(dataFile);
+            System.out.println(contactsList);
+            for (int i = 0; i < contactsList.size(); i++) {
+                if(contactsList.get(i).equals(userSearch)){
+                    System.out.println(contactsList.get(contactsList.indexOf(userSearch)));
+                }
 
+            }
         }
-
 
 
 //        END OF MAIN
