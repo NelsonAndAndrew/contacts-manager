@@ -1,4 +1,3 @@
-package contactsManagerApp;
 
 public class Contact {
 
