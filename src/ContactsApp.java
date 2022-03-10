@@ -38,7 +38,12 @@ public class ContactsApp {
 
             //Conditional Start
             if (userInput == 1) {
-                System.out.println(Files.readAllLines(dataFile));
+                List<String> allContacts = Files.readAllLines(dataFile);
+                System.out.println(allContacts);
+                System.out.println(allContacts.get(0));
+                for (int i = 0; i < allContacts.size(); i+=3) {
+                    System.out.printf("|%15s%5s|%15s%5s|%15s|%n", allContacts.get(i), "", allContacts.get(i+1), "", allContacts.get(i+2));
+                }
             } else if (userInput == 2) {
                 System.out.print("Enter a name :  ");
                 String newName = scan.next();
