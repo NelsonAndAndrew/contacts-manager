@@ -42,7 +42,7 @@ public class ContactsApp {
                 String leftAlignFormat = "| %-15s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
-                System.out.println("-------------------------------------------------------------------");
+                System.out.println("--------------------------------------------------------------------------------");
                 for (int i = 0; i < allContacts.size(); i += 4) {
                     System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i + 1), allContacts.get(i + 2), allContacts.get(i + 3));
                     System.out.println();
@@ -59,11 +59,19 @@ public class ContactsApp {
                         if (yesNo.equalsIgnoreCase("y")) {
                             System.out.print("Enter phone number:  ");
                             String newNumber = scan.next();
+                            newNumber = newNumber.replaceAll("[^\\d]", "");
+                            if (newNumber.length() == 7) {
+                                newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3);
+                            } else if (newNumber.length() == 10) {
+                                newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3, 6) + "-" + newNumber.substring(6);
+                            }
                             System.out.print("Enter email address:  ");
                             String newEmail = scan.next();
                             System.out.print("Enter a note (Max 20 Characters):  ");
                             String newNote = scan.next();
-                            newNote = newNote.substring(0, 20);
+                            if (newNote.length() > 20) {
+                                newNote = newNote.substring(0, 20);
+                            }
                             List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
                             Files.write(dataFile, newContact, StandardOpenOption.APPEND);
                             System.out.println("Contact Added");
@@ -104,7 +112,7 @@ public class ContactsApp {
                 String leftAlignFormat = "| %-15s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
-                System.out.println("-------------------------------------------------------------------");
+                System.out.println("--------------------------------------------------------------------------------");
                 for (int i = 0; i < contactsList.size(); i++) {
                     if (contactsList.get(i).equalsIgnoreCase(userSearch)) {
                         System.out.printf(leftAlignFormat, contactsList.get(contactsList.indexOf(userSearch)), contactsList.get(contactsList.indexOf(userSearch) + 1), contactsList.get(contactsList.indexOf(userSearch) + 2), contactsList.get(contactsList.indexOf(userSearch) + 3));
