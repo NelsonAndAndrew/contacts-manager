@@ -42,7 +42,7 @@ public class ContactsApp {
                 String leftAlignFormat = "| %-15s | %-12s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
-                System.out.println("------------------------------------");
+                System.out.println("---------------------------------------------------------");
                 for (int i = 0; i < allContacts.size(); i += 3) {
                     System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i + 1), allContacts.get(i + 2));
                     System.out.println();
@@ -88,7 +88,7 @@ public class ContactsApp {
                 String leftAlignFormat = "| %-15s | %-12s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
-                System.out.println("------------------------------------");
+                System.out.println("---------------------------------------------------------");
                 for (int i = 0; i < contactsList.size(); i++) {
                     if (contactsList.get(i).equalsIgnoreCase(userSearch)) {
                         System.out.printf(leftAlignFormat, contactsList.get(contactsList.indexOf(userSearch)), contactsList.get(contactsList.indexOf(userSearch) + 1), contactsList.get(contactsList.indexOf(userSearch) + 2));
@@ -101,7 +101,7 @@ public class ContactsApp {
                 contactsList = Files.readAllLines(dataFile);
                 List<String> deleteList = new ArrayList<>();
                 for (int i = 0; i < contactsList.size(); i++) {
-                    if (contactsList.get(i).equals(userDelete)) {
+                    if (contactsList.get(i).equalsIgnoreCase(userDelete)) {
                         i += 2;
                         continue;
                     }
@@ -109,7 +109,8 @@ public class ContactsApp {
 //                contactsList = deleteList;
                 }
                 Files.write(dataFile, deleteList);
-//                System.out.println(deleteList);
+                System.out.println("Contact Deleted");
+                System.out.println();
             } else if (userInput == 5) {
                 System.exit(0);
             }
