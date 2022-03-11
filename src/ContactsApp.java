@@ -48,15 +48,38 @@ public class ContactsApp {
                     System.out.println();
                 }
             } else if (userInput == 2) {
+                List<String> allContacts = Files.readAllLines(dataFile);
                 System.out.print("Enter a name :  ");
                 String newName = scan.next();
+                for (int i = 0; i < allContacts.size(); i++) {
+                    if (allContacts.get(i).equalsIgnoreCase(newName)) {
+                        System.out.println("There's already a contact named " + newName + ".");
+                        System.out.print("Do you want to continue / overwrite? [Y/N]:  ");
+                        String yesNo = scan.next();
+                        if (yesNo.equalsIgnoreCase("y")) {
+                            System.out.print("Enter phone number:  ");
+                            String newNumber = scan.next();
+                            System.out.print("Enter email address:  ");
+                            String newEmail = scan.next();
+                            List<String> newContact = Arrays.asList(newName, newNumber, newEmail);
+                            Files.write(dataFile, newContact, StandardOpenOption.APPEND);
+                            System.out.println("Contact Added");
+                            System.out.println();
+                        } else {
+                            break;
+                        }
+                    }
+                }
                 System.out.print("Enter phone number:  ");
                 String newNumber = scan.next();
                 System.out.print("Enter email address:  ");
                 String newEmail = scan.next();
                 List<String> newContact = Arrays.asList(newName, newNumber, newEmail);
                 Files.write(dataFile, newContact, StandardOpenOption.APPEND);
-//            System.out.println(Files.readAllLines(dataFile));
+                System.out.println("Contact Added");
+                System.out.println();
+
+
             } else if (userInput == 3) {
                 System.out.print("Enter a name to search:  ");
                 String userSearch = scan.next();
@@ -67,7 +90,7 @@ public class ContactsApp {
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
                 System.out.println("------------------------------------");
                 for (int i = 0; i < contactsList.size(); i++) {
-                    if (contactsList.get(i).equals(userSearch)) {
+                    if (contactsList.get(i).equalsIgnoreCase(userSearch)) {
                         System.out.printf(leftAlignFormat, contactsList.get(contactsList.indexOf(userSearch)), contactsList.get(contactsList.indexOf(userSearch) + 1), contactsList.get(contactsList.indexOf(userSearch) + 2));
                         System.out.println();
                     }
