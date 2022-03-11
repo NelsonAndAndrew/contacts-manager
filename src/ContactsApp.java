@@ -43,8 +43,8 @@ public class ContactsApp {
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
                 System.out.println("------------------------------------");
-                for (int i = 0; i < allContacts.size(); i+=3) {
-                    System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i+1), allContacts.get(i+2));
+                for (int i = 0; i < allContacts.size(); i += 3) {
+                    System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i + 1), allContacts.get(i + 2));
                     System.out.println();
                 }
             } else if (userInput == 2) {
@@ -62,13 +62,15 @@ public class ContactsApp {
                 String userSearch = scan.next();
                 contactsList = Files.readAllLines(dataFile);
 //                System.out.println(contactsList);
+                String leftAlignFormat = "| %-15s | %-12s | %-20s |%n";
+                System.out.println();
+                System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
+                System.out.println("------------------------------------");
                 for (int i = 0; i < contactsList.size(); i++) {
                     if (contactsList.get(i).equals(userSearch)) {
-                        System.out.println(contactsList.get(contactsList.indexOf(userSearch)));
-                        System.out.println(contactsList.get(contactsList.indexOf(userSearch) + 1));
-                        System.out.println(contactsList.get(contactsList.indexOf(userSearch) + 2));
+                        System.out.printf(leftAlignFormat, contactsList.get(contactsList.indexOf(userSearch)), contactsList.get(contactsList.indexOf(userSearch) + 1), contactsList.get(contactsList.indexOf(userSearch) + 2));
+                        System.out.println();
                     }
-
                 }
             } else if (userInput == 4) {
                 System.out.print("Who you want to get rid of:  ");
