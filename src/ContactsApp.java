@@ -51,59 +51,70 @@ public class ContactsApp {
                 List<String> allContacts = Files.readAllLines(dataFile);
                 System.out.print("Enter a name :  ");
                 String newName = scan.next();
-                for (int i = 0; i < allContacts.size(); i++) {
-                    if (allContacts.get(i).equalsIgnoreCase(newName)) {
-                        System.out.println("There's already a contact named " + newName + ".");
-                        System.out.print("Do you want to continue / overwrite? [Y/N]:  ");
-                        String yesNo = scan.next();
-                        if (yesNo.equalsIgnoreCase("y")) {
-                            System.out.print("Enter phone number:  ");
-                            String newNumber = scan.next();
-                            newNumber = newNumber.replaceAll("[^\\d]", "");
-                            if (newNumber.length() == 7) {
-                                newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3);
-                            } else if (newNumber.length() == 10) {
-                                newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3, 6) + "-" + newNumber.substring(6);
-                            }
-                            System.out.print("Enter email address:  ");
-                            String newEmail = scan.next();
-                            System.out.print("Enter a note (Max 20 Characters):  ");
-                            String newNote = scan.next();
-                            if (newNote.length() > 20) {
-                                newNote = newNote.substring(0, 20);
-                            }
-                            List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
-                            Files.write(dataFile, newContact, StandardOpenOption.APPEND);
-                            System.out.println("Contact Added");
-                            System.out.println();
-                        } else {
-                            break;
+                if (allContacts.contains(newName)) {
+                    System.out.println("There's already a contact named " + newName + ".");
+                    System.out.print("Do you want to continue / overwrite? [Y/N]:  ");
+                    String yesNo = scan.next();
+                    if (yesNo.equalsIgnoreCase("y")) {
+                        System.out.print("Enter phone number:  ");
+                        String newNumber = scan.next();
+                        newNumber = newNumber.replaceAll("[^\\d]", "");
+                        if (newNumber.length() == 7) {
+                            newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3);
+                        } else if (newNumber.length() == 10) {
+                            newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3, 6) + "-" + newNumber.substring(6);
                         }
+                        System.out.print("Enter email address:  ");
+                        String newEmail = scan.next();
+                        System.out.print("Enter a note (Max 20 Characters):  ");
+                        String newNote = scan.next();
+                        if (newNote.length() > 20) {
+                            newNote = newNote.substring(0, 20);
+                        }
+                        List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
+                        List<String> updated = new ArrayList<>();
+                        for (int i = 0; i < allContacts.size(); i += 4) {
+                            if (allContacts.get(i).equals(newName)) {
+                                continue;
+                            }
+                            updated.add(allContacts.get(i));
+                            updated.add(allContacts.get(i + 1));
+                            updated.add(allContacts.get(i + 2));
+                            updated.add(allContacts.get(i + 3));
+                        }
+                        updated.add(newName);
+                        updated.add(newNumber);
+                        updated.add(newEmail);
+                        updated.add(newNote);
+//                        allContacts = updated;
+                        Files.write(dataFile, updated);
+                        System.out.println("Contact Added");
+                        System.out.println();
                     }
+                } else {
+                    System.out.print("Enter phone number:  ");
+                    String newNumber = scan.next();
+
+                    newNumber = newNumber.replaceAll("[^\\d]", "");
+                    if (newNumber.length() == 7) {
+                        newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3);
+                    } else if (newNumber.length() == 10) {
+                        newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3, 6) + "-" + newNumber.substring(6);
+                    }
+
+                    System.out.print("Enter email address:  ");
+                    String newEmail = scan.next();
+                    System.out.print("Enter a note (Max 20 Characters):  ");
+                    String newNote = scan.next();
+                    if (newNote.length() > 20) {
+                        newNote = newNote.substring(0, 20);
+                    }
+                    List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
+                    Files.write(dataFile, newContact, StandardOpenOption.APPEND);
+                    System.out.println("Contact Added");
+                    System.out.println();
+
                 }
-                System.out.print("Enter phone number:  ");
-                String newNumber = scan.next();
-
-                newNumber = newNumber.replaceAll("[^\\d]", "");
-                if (newNumber.length() == 7) {
-                    newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3);
-                } else if (newNumber.length() == 10) {
-                    newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3, 6) + "-" + newNumber.substring(6);
-                }
-
-                System.out.print("Enter email address:  ");
-                String newEmail = scan.next();
-                System.out.print("Enter a note (Max 20 Characters):  ");
-                String newNote = scan.next();
-                if (newNote.length() > 20) {
-                    newNote = newNote.substring(0, 20);
-                }
-                List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
-                Files.write(dataFile, newContact, StandardOpenOption.APPEND);
-                System.out.println("Contact Added");
-                System.out.println();
-
-
             } else if (userInput == 3) {
                 System.out.print("Enter a name to search:  ");
                 String userSearch = scan.next();
