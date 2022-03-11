@@ -56,7 +56,7 @@ public class ContactsApp {
             //Conditional Start
             if (userInput == 1) {
                 List<String> allContacts = Files.readAllLines(dataFile);
-                String leftAlignFormat = "| %-15s | %-12s | %-20s | %-20s |%n";
+                String leftAlignFormat = "| %-20s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
                 System.out.println("--------------------------------------------------------------------------------");
@@ -136,7 +136,7 @@ public class ContactsApp {
                 String userSearch = scan.next();
                 contactsList = Files.readAllLines(dataFile);
 //                System.out.println(contactsList);
-                String leftAlignFormat = "| %-15s | %-12s | %-20s | %-20s |%n";
+                String leftAlignFormat = "| %-20s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
                 System.out.println("--------------------------------------------------------------------------------");
