@@ -74,12 +74,11 @@ public class ContactsApp {
                 String newNumber = scan.next();
 
                 newNumber = newNumber.replaceAll("[^\\d]", "");
-                System.out.println(newNumber);
-
-
-
-
-
+                if(newNumber.length() == 7){
+                    newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3);
+                }else if(newNumber.length() == 10){
+                    newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3, 6) + "-" + newNumber.substring(6);
+                }
 
                 System.out.print("Enter email address:  ");
                 String newEmail = scan.next();
