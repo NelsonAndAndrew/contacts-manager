@@ -40,9 +40,10 @@ public class ContactsApp {
                 "| |\\/| | / /\\ \\ | . ` | / /\\ \\| | |_ |  __| |  _  / \n" +
                 "| |  | |/ ____ \\| |\\  |/ ____ \\ |__| | |____| | \\ \\ \n" +
                 "|_|  |_/_/    \\_\\_| \\_/_/    \\_\\_____|______|_|  \\_\\");
+        System.out.println();
         do {
 
-            System.out.println();
+
             System.out.println("1. View contacts.");
             System.out.println("2. Add a new contact.");
             System.out.println("3. Search a contact by name.");
@@ -148,6 +149,7 @@ public class ContactsApp {
                 System.out.print("Who you want to get rid of:  ");
                 String userDelete = scan.next();
                 contactsList = Files.readAllLines(dataFile);
+                boolean deleted = contactsList.contains(userDelete);
                 List<String> deleteList = new ArrayList<>();
                 for (int i = 0; i < contactsList.size(); i++) {
                     if (contactsList.get(i).equalsIgnoreCase(userDelete)) {
@@ -157,7 +159,13 @@ public class ContactsApp {
                     deleteList.add(contactsList.get(i));
                 }
                 Files.write(dataFile, deleteList);
-                System.out.println("Contact Deleted");
+                if (deleted) {
+                    System.out.println();
+                    System.out.println("Contact Deleted");
+                } else{
+                    System.out.println();
+                    System.out.println("Contact does not exist");
+                }
                 System.out.println();
             } else if (userInput == 5) {
                 System.out.println();
