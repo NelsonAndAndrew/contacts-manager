@@ -39,12 +39,12 @@ public class ContactsApp {
             //Conditional Start
             if (userInput == 1) {
                 List<String> allContacts = Files.readAllLines(dataFile);
-                String leftAlignFormat = "| %-15s | %-12s | %-20s |%n";
+                String leftAlignFormat = "| %-15s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
-                System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
-                System.out.println("---------------------------------------------------------");
-                for (int i = 0; i < allContacts.size(); i += 3) {
-                    System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i + 1), allContacts.get(i + 2));
+                System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
+                System.out.println("-------------------------------------------------------------------");
+                for (int i = 0; i < allContacts.size(); i += 4) {
+                    System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i + 1), allContacts.get(i + 2), allContacts.get(i + 3));
                     System.out.println();
                 }
             } else if (userInput == 2) {
@@ -61,7 +61,10 @@ public class ContactsApp {
                             String newNumber = scan.next();
                             System.out.print("Enter email address:  ");
                             String newEmail = scan.next();
-                            List<String> newContact = Arrays.asList(newName, newNumber, newEmail);
+                            System.out.print("Enter a note (Max 20 Characters):  ");
+                            String newNote = scan.next();
+                            newNote = newNote.substring(0, 20);
+                            List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
                             Files.write(dataFile, newContact, StandardOpenOption.APPEND);
                             System.out.println("Contact Added");
                             System.out.println();
@@ -74,15 +77,20 @@ public class ContactsApp {
                 String newNumber = scan.next();
 
                 newNumber = newNumber.replaceAll("[^\\d]", "");
-                if(newNumber.length() == 7){
+                if (newNumber.length() == 7) {
                     newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3);
-                }else if(newNumber.length() == 10){
+                } else if (newNumber.length() == 10) {
                     newNumber = newNumber.substring(0, 3) + "-" + newNumber.substring(3, 6) + "-" + newNumber.substring(6);
                 }
 
                 System.out.print("Enter email address:  ");
                 String newEmail = scan.next();
-                List<String> newContact = Arrays.asList(newName, newNumber, newEmail);
+                System.out.print("Enter a note (Max 20 Characters):  ");
+                String newNote = scan.next();
+                if (newNote.length() > 20) {
+                    newNote = newNote.substring(0, 20);
+                }
+                List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
                 Files.write(dataFile, newContact, StandardOpenOption.APPEND);
                 System.out.println("Contact Added");
                 System.out.println();
@@ -93,13 +101,13 @@ public class ContactsApp {
                 String userSearch = scan.next();
                 contactsList = Files.readAllLines(dataFile);
 //                System.out.println(contactsList);
-                String leftAlignFormat = "| %-15s | %-12s | %-20s |%n";
+                String leftAlignFormat = "| %-15s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
-                System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
-                System.out.println("---------------------------------------------------------");
+                System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
+                System.out.println("-------------------------------------------------------------------");
                 for (int i = 0; i < contactsList.size(); i++) {
                     if (contactsList.get(i).equalsIgnoreCase(userSearch)) {
-                        System.out.printf(leftAlignFormat, contactsList.get(contactsList.indexOf(userSearch)), contactsList.get(contactsList.indexOf(userSearch) + 1), contactsList.get(contactsList.indexOf(userSearch) + 2));
+                        System.out.printf(leftAlignFormat, contactsList.get(contactsList.indexOf(userSearch)), contactsList.get(contactsList.indexOf(userSearch) + 1), contactsList.get(contactsList.indexOf(userSearch) + 2), contactsList.get(contactsList.indexOf(userSearch) + 3));
                         System.out.println();
                     }
                 }
