@@ -72,6 +72,15 @@ public class ContactsApp {
                 }
                 System.out.print("Enter phone number:  ");
                 String newNumber = scan.next();
+
+                newNumber = newNumber.replaceAll("[^\\d]", "");
+                System.out.println(newNumber);
+
+
+
+
+
+
                 System.out.print("Enter email address:  ");
                 String newEmail = scan.next();
                 List<String> newContact = Arrays.asList(newName, newNumber, newEmail);
