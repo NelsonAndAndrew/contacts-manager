@@ -103,6 +103,7 @@ public class ContactsApp {
                         updated.add(newEmail);
                         updated.add(newNote);
                         Files.write(dataFile, updated);
+                        System.out.println();
                         System.out.println("Contact Added");
                         System.out.println();
                     }
