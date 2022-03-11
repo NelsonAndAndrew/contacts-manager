@@ -59,7 +59,7 @@ public class ContactsApp {
                 String leftAlignFormat = "| %-20s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
-                System.out.println("--------------------------------------------------------------------------------");
+                System.out.println("-------------------------------------------------------------------------------------");
                 for (int i = 0; i < allContacts.size(); i += 4) {
                     System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i + 1), allContacts.get(i + 2), allContacts.get(i + 3));
                     System.out.println();
@@ -139,7 +139,7 @@ public class ContactsApp {
                 String leftAlignFormat = "| %-20s | %-12s | %-20s | %-20s |%n";
                 System.out.println();
                 System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL", "NOTES");
-                System.out.println("--------------------------------------------------------------------------------");
+                System.out.println("-------------------------------------------------------------------------------------");
                 for (int i = 0; i < contactsList.size(); i++) {
                     if (contactsList.get(i).equalsIgnoreCase(userSearch)) {
                         System.out.printf(leftAlignFormat, contactsList.get(contactsList.indexOf(userSearch)), contactsList.get(contactsList.indexOf(userSearch) + 1), contactsList.get(contactsList.indexOf(userSearch) + 2), contactsList.get(contactsList.indexOf(userSearch) + 3));
