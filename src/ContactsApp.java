@@ -71,7 +71,6 @@ public class ContactsApp {
                         if (newNote.length() > 20) {
                             newNote = newNote.substring(0, 20);
                         }
-                        List<String> newContact = Arrays.asList(newName, newNumber, newEmail, newNote);
                         List<String> updated = new ArrayList<>();
                         for (int i = 0; i < allContacts.size(); i += 4) {
                             if (allContacts.get(i).equals(newName)) {
@@ -86,7 +85,6 @@ public class ContactsApp {
                         updated.add(newNumber);
                         updated.add(newEmail);
                         updated.add(newNote);
-//                        allContacts = updated;
                         Files.write(dataFile, updated);
                         System.out.println("Contact Added");
                         System.out.println();
@@ -141,7 +139,6 @@ public class ContactsApp {
                         continue;
                     }
                     deleteList.add(contactsList.get(i));
-//                contactsList = deleteList;
                 }
                 Files.write(dataFile, deleteList);
                 System.out.println("Contact Deleted");
@@ -154,10 +151,6 @@ public class ContactsApp {
 
 //        END OF MAIN
     }
-
-//    public static Contact addContact(){
-//
-//    }
 
 //END OF CLASS
 }
