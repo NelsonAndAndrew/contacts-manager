@@ -135,7 +135,7 @@ public class ContactsApp {
                 List<String> deleteList = new ArrayList<>();
                 for (int i = 0; i < contactsList.size(); i++) {
                     if (contactsList.get(i).equalsIgnoreCase(userDelete)) {
-                        i += 2;
+                        i += 3;
                         continue;
                     }
                     deleteList.add(contactsList.get(i));
