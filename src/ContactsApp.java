@@ -23,7 +23,7 @@ public class ContactsApp {
 
         Path dataFile = Paths.get(directory, filename);
 
-        System.out.println("dataFile = " + dataFile);
+//        System.out.println("dataFile = " + dataFile);
 
         List<String> contactsList = new ArrayList<>();
         do {
@@ -39,10 +39,13 @@ public class ContactsApp {
             //Conditional Start
             if (userInput == 1) {
                 List<String> allContacts = Files.readAllLines(dataFile);
-                System.out.println(allContacts);
-                System.out.println(allContacts.get(0));
+                String leftAlignFormat = "| %-15s | %-12s | %-20s |%n";
+                System.out.println();
+                System.out.printf(leftAlignFormat, "NAME", "PHONE", "EMAIL");
+                System.out.println("------------------------------------");
                 for (int i = 0; i < allContacts.size(); i+=3) {
-                    System.out.printf("|%15s%5s|%15s%5s|%15s|%n", allContacts.get(i), "", allContacts.get(i+1), "", allContacts.get(i+2));
+                    System.out.printf(leftAlignFormat, allContacts.get(i), allContacts.get(i+1), allContacts.get(i+2));
+                    System.out.println();
                 }
             } else if (userInput == 2) {
                 System.out.print("Enter a name :  ");
